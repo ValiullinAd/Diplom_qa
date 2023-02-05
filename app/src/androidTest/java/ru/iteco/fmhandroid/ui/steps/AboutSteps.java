@@ -16,11 +16,11 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static org.hamcrest.core.AllOf.allOf;
 
 public class AboutSteps {
-    AboutElements About = new AboutElements();
+    AboutElements about = new AboutElements();
 
     public void isAboutScreen() {
         Allure.step("Проверить, что это окно About");
-        About.title.check(matches(isDisplayed()));
+        about.title.check(matches(isDisplayed()));
     }
 
     public void checkTerms() {
@@ -28,7 +28,7 @@ public class AboutSteps {
         Intents.init();
         Matcher<Intent> expectedIntent = allOf(hasAction(Intent.ACTION_VIEW), hasData("https://vhospice.org/#/terms-of-use"));
         intending(expectedIntent).respondWith(new Instrumentation.ActivityResult(0, null));
-        About.terms.perform(click());
+        about.terms.perform(click());
         intended(expectedIntent);
         Intents.release();
     }
@@ -38,13 +38,13 @@ public class AboutSteps {
         Intents.init();
         Matcher<Intent> expectedIntent = allOf(hasAction(Intent.ACTION_VIEW), hasData("https://vhospice.org/#/privacy-policy/"));
         intending(expectedIntent).respondWith(new Instrumentation.ActivityResult(0, null));
-        About.privacy.perform(click());
+        about.privacy.perform(click());
         intended(expectedIntent);
         Intents.release();
     }
 
     public void backButton() {
         Allure.step("Возврат к предыдущему экрану");
-        About.backButton.perform(click());
+        about.backButton.perform(click());
     }
 }

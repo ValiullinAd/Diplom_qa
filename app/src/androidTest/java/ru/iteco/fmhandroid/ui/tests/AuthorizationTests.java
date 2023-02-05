@@ -19,8 +19,8 @@ import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class AuthorizationTests {
-    AuthorizationSteps Auth = new AuthorizationSteps();
-    MainSteps Main = new MainSteps();
+    AuthorizationSteps auth = new AuthorizationSteps();
+    MainSteps main = new MainSteps();
 
     @Rule
     public ActivityTestRule<AppActivity> mActivityTestRule =
@@ -30,65 +30,65 @@ public class AuthorizationTests {
     public void authCheck() {
         SystemClock.sleep(5000);
         try {
-            Auth.isAuthorizationScreen();
+            auth.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
-            Main.logOut();
+            main.logOut();
         }
     }
 
     @Test
     @DisplayName("Вход с валидными данными")
     public void validAuth(){
-        Auth.isAuthorizationScreen();
-        Auth.validAuth();
-        Main.logOut();
+        auth.isAuthorizationScreen();
+        auth.validAuth();
+        main.logOut();
     }
 
     @Test
     @DisplayName("Вход с пустым полем Логин")
     public void emptyLogin(){
-        Auth.isAuthorizationScreen();
-        Auth.loginInputField("");
-        Auth.passwordInputField("password2");
-        Auth.buttonClick();
-        onView(allOf(withContentDescription("Login and password cannot be empty"), isDisplayed()));
+        auth.isAuthorizationScreen();
+        auth.loginInputField("");
+        auth.passwordInputField("password2");
+        auth.buttonClick();
+        auth.emptyLoginOrPass();
     }
 
     @Test
     @DisplayName(" Вход с пустым полем Пароль")
     public void emptyPassword(){
-        Auth.isAuthorizationScreen();
-        Auth.loginInputField("login2");
-        Auth.passwordInputField("");
-        Auth.buttonClick();
-        onView(allOf(withContentDescription("Login and password cannot be empty"), isDisplayed()));
+        auth.isAuthorizationScreen();
+        auth.loginInputField("login2");
+        auth.passwordInputField("");
+        auth.buttonClick();
+        auth.emptyLoginOrPass();
     }
 
     @Test
     @DisplayName("Поле Логин заполнено невалидными данными")
     public void invalidLogin(){
-        Auth.isAuthorizationScreen();
-        Auth.loginInputField("123qweasd");
-        Auth.passwordInputField("password2");
-        Auth.buttonClick();
-        onView(allOf(withContentDescription("Wrong login or password"), isDisplayed()));
+        auth.isAuthorizationScreen();
+        auth.loginInputField("123qweasd");
+        auth.passwordInputField("password2");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
     }
 
     @Test
     @DisplayName("Поле Пароль заполнено невалидными данными")
     public void invalidPassword(){
-        Auth.isAuthorizationScreen();
-        Auth.loginInputField("login2");
-        Auth.passwordInputField("123qweasd");
-        Auth.buttonClick();
-        onView(allOf(withContentDescription("Wrong login or password"), isDisplayed()));
+        auth.isAuthorizationScreen();
+        auth.loginInputField("login2");
+        auth.passwordInputField("123qweasd");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
     }
 
     @Test
     @DisplayName("Авторизация с пустыми полями")
     public void emptyAuth() {
-        Auth.isAuthorizationScreen();
-        Auth.buttonClick();
-        onView(allOf(withContentDescription("Login and password cannot be empty"), isDisplayed()));
+        auth.isAuthorizationScreen();
+        auth.buttonClick();
+        auth.emptyLoginOrPass();
     }
 }

@@ -16,7 +16,6 @@ public class NewsControlPanelElements {
     public ViewInteraction notActiveNews = onView(withId(R.id.filter_news_inactive_material_check_box));
     public ViewInteraction deleteButton = onView(withIndex(withId(R.id.delete_news_item_image_view),0));
     public ViewInteraction editButton = onView(withIndex(withId(R.id.edit_news_item_image_view),0));
-    public ViewInteraction title = onView(withIndex(withId(R.id.news_item_title_text_view),0));
     public ViewInteraction buttonExpand = onView(withIndex(withId(R.id.view_news_item_image_view), 0));
     public ViewInteraction description = onView(withIndex(withId(R.id.news_item_description_text_view), 0));
     public ViewInteraction saveButton = onView(withId(R.id.save_button));

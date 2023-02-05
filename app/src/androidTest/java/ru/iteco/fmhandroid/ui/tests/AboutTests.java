@@ -17,9 +17,9 @@ import ru.iteco.fmhandroid.ui.steps.MainSteps;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class AboutTests {
-    AuthorizationSteps Auth = new AuthorizationSteps();
-    MainSteps Main = new MainSteps();
-    AboutSteps About = new AboutSteps();
+    AuthorizationSteps auth = new AuthorizationSteps();
+    MainSteps main = new MainSteps();
+    AboutSteps about = new AboutSteps();
 
 
     @Rule
@@ -30,9 +30,9 @@ public class AboutTests {
     public void authCheck() {
         SystemClock.sleep(5000);
         try {
-            Main.isMainScreen();
+            main.isMainScreen();
         } catch (NoMatchingViewException e) {
-            Auth.validAuth();
+            auth.validAuth();
         }
         SystemClock.sleep(2000);
     }
@@ -40,19 +40,19 @@ public class AboutTests {
     @Test
     @DisplayName("Ссылка Политика конфиденциальности")
     public void transitionToPrivacyPolicy(){
-        Main.openAbout();
-        About.isAboutScreen();
-        About.checkPrivacy();
-        About.backButton();
+        main.openAbout();
+        about.isAboutScreen();
+        about.checkPrivacy();
+        about.backButton();
     }
 
     @Test
     @DisplayName("Ссылка Пользовательское соглашение")
     public void transitionToTermsOfUse(){
-        Main.openAbout();
-        About.isAboutScreen();
-        About.checkTerms();
-        About.backButton();
+        main.openAbout();
+        about.isAboutScreen();
+        about.checkTerms();
+        about.backButton();
     }
 
 }

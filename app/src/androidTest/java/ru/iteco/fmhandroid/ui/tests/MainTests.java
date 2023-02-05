@@ -15,8 +15,8 @@ import ru.iteco.fmhandroid.ui.steps.MainSteps;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class MainTests {
-    AuthorizationSteps Auth = new AuthorizationSteps();
-    MainSteps Main = new MainSteps();
+    AuthorizationSteps auth = new AuthorizationSteps();
+    MainSteps main = new MainSteps();
 
     @Rule
     public ActivityTestRule<AppActivity> mActivityTestRule =
@@ -26,9 +26,9 @@ public class MainTests {
     public void authCheck() {
         SystemClock.sleep(5000);
         try {
-            Main.isMainScreen();
+            main.isMainScreen();
         } catch (NoMatchingViewException e) {
-            Auth.validAuth();
+            auth.validAuth();
         }
         SystemClock.sleep(2000);
     }
@@ -36,30 +36,30 @@ public class MainTests {
     @Test
     @DisplayName("ВСЕ НОВОСТИ")
     public void openAllNews(){
-        Main.clickButtonAllNews();
+        main.clickButtonAllNews();
     }
 
     @Test
     @DisplayName("ВСЕ ЗАЯВКИ")
     public void openAllClaims(){
-        Main.clickButtonAllClaims();
+        main.clickButtonAllClaims();
     }
 
     @Test
     @DisplayName("Вкладка Заявки")
     public void openMenuClaims(){
-        Main.openClaims();
+        main.openClaims();
     }
 
     @Test
     @DisplayName("Вкладка Новости")
     public void openMenuNews(){
-        Main.openNews();
+        main.openNews();
     }
 
     @Test
     @DisplayName("Вкладка О приложении")
     public void openMenuAbout(){
-        Main.openAbout();
+        main.openAbout();
     }
 }
