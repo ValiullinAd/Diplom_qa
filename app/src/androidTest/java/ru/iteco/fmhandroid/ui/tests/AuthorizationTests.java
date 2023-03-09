@@ -91,4 +91,44 @@ public class AuthorizationTests {
         auth.buttonClick();
         auth.emptyLoginOrPass();
     }
+
+    @Test
+    @DisplayName("Поле Логин заполнено символами")
+    public void loginSpecialSymbols(){
+        auth.isAuthorizationScreen();
+        auth.loginInputField("@#%&${}|/?");
+        auth.passwordInputField("password2");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
+    }
+
+    @Test
+    @DisplayName("Поле Пароль заполнено символами")
+    public void passwordSpecialSymbols(){
+        auth.isAuthorizationScreen();
+        auth.loginInputField("login2");
+        auth.passwordInputField("@#%&${}|/?");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
+    }
+
+    @Test
+    @DisplayName("Поле Логин заполнено пробелами")
+    public void loginSpice(){
+        auth.isAuthorizationScreen();
+        auth.loginInputField("     ");
+        auth.passwordInputField("password2");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
+    }
+
+    @Test
+    @DisplayName("Поле Пароль заполнено пробелами")
+    public void passwordSpice(){
+        auth.isAuthorizationScreen();
+        auth.loginInputField("login2");
+        auth.passwordInputField("         ");
+        auth.buttonClick();
+        auth.wrongLoginOrPass();
+    }
 }

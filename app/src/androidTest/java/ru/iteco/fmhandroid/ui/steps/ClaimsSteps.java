@@ -4,20 +4,17 @@ import io.qameta.allure.kotlin.Allure;
 import ru.iteco.fmhandroid.ui.elements.ClaimsElements;
 import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static org.hamcrest.core.AllOf.allOf;
-import static ru.iteco.fmhandroid.ui.utils.Utils.withIndex;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import android.os.SystemClock;
 import ru.iteco.fmhandroid.R;
 import org.hamcrest.Matchers;
-
-import android.os.SystemClock;
 
 public class ClaimsSteps {
     ClaimsElements claims = new ClaimsElements();
@@ -143,41 +140,48 @@ public class ClaimsSteps {
     }
 
     public void checkClaim(){
+        Allure.step("Проверить наличие заявки");
         onView(withId(R.id.claim_list_recycler_view)).check(matches(isDisplayed()));
     }
     public void  dateCreationClaims(){
+        Allure.step("Редактируем дату");
         claims.editDate.perform(click());
 
     }
     public void timeCreationClaims(){
+        Allure.step("Редактируем время");
         claims.editTime.perform(click());
 
     }
     public void clickOkClaimButton(){
+        Allure.step("Нажимаем ОК");
         claims.okButton.perform(click());
 
     }
-    public void checkVisualText(){
-        onView(withText("Original text")).check(matches(isDisplayed()));
-    }
+
 
     public void statusProcessingButton(){
+        Allure.step("Кнопка выбора взять в работу или отменить");
         onView(allOf(withId(R.id.status_processing_image_button))).perform(click());
     }
 
     public void takeToWork(){
+        Allure.step("Берем заявку в работу");
         onView(allOf(withId(android.R.id.title), withText("take to work"))).perform(click());
     }
 
     public void textInProgress(){
+        Allure.step("Проверяем статус In progress");
         onView(withId(R.id.status_label_text_view)).check(matches(withText("In progress"))).check(matches(isDisplayed()));
     }
 
     public void cancelClaim(){
+        Allure.step("Отмена заявки");
         onView(Matchers.allOf(withId(android.R.id.title), withText("Cancel"))).perform(click());
     }
 
     public void textCancel(){
+        Allure.step("Проверяем статус Canceled");
         onView(withId(R.id.status_label_text_view)).check(matches(withText("Canceled"))).check(matches(isDisplayed()));
     }
 
@@ -186,11 +190,26 @@ public class ClaimsSteps {
     }
 
     public void justText(){
+        Allure.step("Ввод текста");
         onView(withId(R.id.editText)).perform(replaceText("Какой то там текст")).perform(closeSoftKeyboard());
     }
 
     public void textOpen(){
+        Allure.step("Проверка статуса заявки ");
         onView(withId(R.id.status_label_text_view)).check(matches(withText("Open"))).check(matches(isDisplayed()));
+    }
+    public void findTitle() {
+        Allure.step("Поиск и переход к созданой заявки");
+        onView(ViewMatchers.withId(R.id.claim_list_recycler_view))
+                // scrollTo will fail the test if no item matches.
+                .perform(RecyclerViewActions.scrollTo(
+                        hasDescendant(withText("Original text2551112"))
+                ));
+        SystemClock.sleep(5000);
+    }
+    public void checkVisualText(){
+        Allure.step("Проверка созданой заявки");
+        onView(withText("Original text2551112")).check(matches(isDisplayed()));
     }
 
 

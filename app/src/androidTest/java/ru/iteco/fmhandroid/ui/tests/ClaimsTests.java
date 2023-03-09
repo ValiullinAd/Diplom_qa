@@ -13,22 +13,18 @@ import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.steps.ClaimsSteps;
 import ru.iteco.fmhandroid.ui.steps.MainSteps;
-import ru.iteco.fmhandroid.ui.utils.Utils;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.*;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import ru.iteco.fmhandroid.R;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.Matchers.allOf;
+import androidx.test.filters.LargeTest;
 
 
 @RunWith(AllureAndroidJUnit4.class)
+@LargeTest
+
+
 public class ClaimsTests {
     AuthorizationSteps auth = new AuthorizationSteps();
     ClaimsSteps claims = new ClaimsSteps();
     MainSteps main = new MainSteps();
+
 
 
 
@@ -45,6 +41,24 @@ public class ClaimsTests {
             auth.validAuth();
         }
         SystemClock.sleep(2000);
+    }
+
+    @Test
+    @DisplayName("Создание Заявки")
+    public void creatingNewClaim(){
+        main.openClaims();
+        claims.addNew();
+        claims.isCreatingScreen();
+        claims.enterTitle("Original text2551112");
+        claims.enterExecutor("Ivanov Ivan Ivanovich");
+        claims.dateCreationClaims();
+        claims.clickOkClaimButton();
+        claims.timeCreationClaims();
+        claims.clickOkClaimButton();
+        claims.enterDescription("Описание");
+        claims.saveButton();
+        claims.findTitle();
+        claims.checkVisualText();
     }
 
     @Test
@@ -103,28 +117,6 @@ public class ClaimsTests {
         claims.onSwipe();
         claims.goBack();
         claims.isClaimsScreen();
-    }
-
-    @Test
-    @DisplayName("Создание Заявки")
-    public void creatingNewClaim(){
-        main.openClaims();
-        claims.addNew();
-        claims.isCreatingScreen();
-        claims.enterTitle("Original text");
-        claims.enterExecutor("Ivanov Ivan Ivanovich");
-        //claims.enterDate("02.01.1800");
-        claims.dateCreationClaims();
-        claims.clickOkClaimButton();
-        claims.timeCreationClaims();
-        claims.clickOkClaimButton();
-        claims.enterDescription("Описание");
-        claims.saveButton();
-        claims.onSwipe();
-        SystemClock.sleep(2000);
-        Utils.Swipes.swipeToBottom();
-        SystemClock.sleep(5000);
-        claims.checkVisualText();
     }
 
     @Test
@@ -229,7 +221,7 @@ public class ClaimsTests {
     }
 
     @Test
-    @DisplayName("Изменение статуса заявки")
+    @DisplayName("Заявка в работу")
     public void changeClaimStatus2InProgress(){
         main.openClaims();
         claims.isClaimsScreen();
