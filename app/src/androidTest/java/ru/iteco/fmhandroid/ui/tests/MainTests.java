@@ -1,6 +1,5 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import android.os.SystemClock;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 import org.junit.Before;
@@ -24,13 +23,13 @@ public class MainTests {
 
     @Before
     public void authCheck() {
-        SystemClock.sleep(5000);
+        auth.waitAutorizationContainer();
         try {
             main.isMainScreen();
         } catch (NoMatchingViewException e) {
             auth.validAuth();
         }
-        SystemClock.sleep(2000);
+        auth.waitAutorizationContainer();
     }
 
     @Test

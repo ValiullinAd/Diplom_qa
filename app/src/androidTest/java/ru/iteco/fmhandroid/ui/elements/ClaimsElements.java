@@ -1,13 +1,11 @@
 package ru.iteco.fmhandroid.ui.elements;
 
 import androidx.test.espresso.ViewInteraction;
-
 import ru.iteco.fmhandroid.R;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static ru.iteco.fmhandroid.ui.utils.Utils.withIndex;
-
 import org.hamcrest.core.AllOf;
 
 public class ClaimsElements {

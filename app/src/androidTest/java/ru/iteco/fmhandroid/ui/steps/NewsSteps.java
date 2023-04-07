@@ -7,12 +7,6 @@ import static androidx.test.espresso.action.ViewActions.*;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static org.hamcrest.core.AllOf.allOf;
-import static ru.iteco.fmhandroid.ui.utils.Utils.withIndex;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import android.os.SystemClock;
-import ru.iteco.fmhandroid.R;
 import org.hamcrest.Matchers;
 
 public class NewsSteps {

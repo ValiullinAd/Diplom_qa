@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.ui.elements;
 import androidx.test.espresso.ViewInteraction;
 import ru.iteco.fmhandroid.R;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
@@ -20,4 +21,5 @@ public class MainElements {
     public ViewInteraction newsScreen = onView(withId(R.id.news_list_swipe_refresh));
     public ViewInteraction claimsScreen = onView(withId(R.id.claim_list_recycler_view));
     public ViewInteraction aboutScreen = onView(withId(R.id.about_version_title_text_view));
+    public ViewInteraction inRoot = onView(isRoot());
 }

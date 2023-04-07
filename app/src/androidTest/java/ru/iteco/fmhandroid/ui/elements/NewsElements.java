@@ -4,7 +4,6 @@ import androidx.test.espresso.ViewInteraction;
 import ru.iteco.fmhandroid.R;
 import static androidx.test.espresso.Espresso.onView;
 import static org.hamcrest.core.AllOf.allOf;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static ru.iteco.fmhandroid.ui.utils.Utils.withIndex;

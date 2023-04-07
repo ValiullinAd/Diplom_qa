@@ -1,6 +1,5 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import android.os.SystemClock;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 import org.junit.Before;
@@ -15,7 +14,6 @@ import ru.iteco.fmhandroid.ui.steps.ClaimsSteps;
 import ru.iteco.fmhandroid.ui.steps.MainSteps;
 import androidx.test.filters.LargeTest;
 
-
 @RunWith(AllureAndroidJUnit4.class)
 @LargeTest
 
@@ -26,21 +24,19 @@ public class ClaimsTests {
     MainSteps main = new MainSteps();
 
 
-
-
     @Rule
     public ActivityTestRule<AppActivity> mActivityTestRule =
             new ActivityTestRule<>(AppActivity.class);
 
     @Before
     public void authCheck() {
-        SystemClock.sleep(5000);
+        auth.waitAutorizationContainer();
         try {
             main.isMainScreen();
         } catch (NoMatchingViewException e) {
             auth.validAuth();
         }
-        SystemClock.sleep(2000);
+        auth.waitAutorizationContainer();
     }
 
     @Test
@@ -49,7 +45,7 @@ public class ClaimsTests {
         main.openClaims();
         claims.addNew();
         claims.isCreatingScreen();
-        claims.enterTitle("Original text2551112");
+        claims.enterTitle("Original text 2222222229");
         claims.enterExecutor("Ivanov Ivan Ivanovich");
         claims.dateCreationClaims();
         claims.clickOkClaimButton();
@@ -275,5 +271,4 @@ public class ClaimsTests {
         claims.textOpen();
 
     }
-
 }

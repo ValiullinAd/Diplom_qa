@@ -1,12 +1,13 @@
 package ru.iteco.fmhandroid.ui.steps;
 
-import android.os.SystemClock;
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.elements.NewsControlPanelElements;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
+import static ru.iteco.fmhandroid.ui.utils.Utils.waitDisplayed;
 
 public class NewsControlPanelSteps {
     NewsControlPanelElements newsControlPanel = new NewsControlPanelElements();
@@ -67,6 +68,11 @@ public class NewsControlPanelSteps {
         Allure.step("Развернуть новость");
         newsControlPanel.buttonExpand.perform(click());
     }
+    public void expandNewsLoad(){
+        Allure.step("Загрузка развернутой новости");
+        newsControlPanel.inRoot.perform(waitDisplayed(R.id.view_news_item_image_view, 10000));
+
+    }
 
     public void checkExpandNews() {
         Allure.step("Проверить открывшуюся новость");
@@ -76,7 +82,6 @@ public class NewsControlPanelSteps {
     public void saveButton() {
         Allure.step("Нажать на кнопку сохранить");
         newsControlPanel.saveButton.perform(click());
-        SystemClock.sleep(1500);
     }
 
     public void cancelButton() {

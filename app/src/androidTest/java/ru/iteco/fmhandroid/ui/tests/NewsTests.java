@@ -1,11 +1,6 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 import static androidx.test.espresso.Espresso.closeSoftKeyboard;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static org.hamcrest.Matchers.allOf;
-import android.os.SystemClock;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.rule.ActivityTestRule;
 import org.junit.Before;
@@ -19,6 +14,7 @@ import ru.iteco.fmhandroid.ui.steps.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.steps.MainSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsControlPanelSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;;
+import android.os.SystemClock;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class NewsTests {
@@ -33,14 +29,15 @@ public class NewsTests {
 
     @Before
     public void authCheck() {
-        SystemClock.sleep(5000);
+        auth.waitAutorizationContainer();
         try {
             main.isMainScreen();
         } catch (NoMatchingViewException e) {
             auth.validAuth();
         }
-        SystemClock.sleep(2000);
+        auth.waitAutorizationContainer();
     }
+
 
     @Test
     @DisplayName("Сортировка новостей")
@@ -156,8 +153,10 @@ public class NewsTests {
     public void viewNewsInControlPanel() {
         main.openNews();
         news.editNews();
+        newsControlPanel.expandNewsLoad();
         newsControlPanel.expandNews();
         newsControlPanel.checkExpandNews();
+
     }
 
     @Test

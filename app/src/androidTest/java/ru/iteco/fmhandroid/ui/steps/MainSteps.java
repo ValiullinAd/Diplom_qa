@@ -1,18 +1,24 @@
 package ru.iteco.fmhandroid.ui.steps;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.elements.MainElements;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static ru.iteco.fmhandroid.ui.utils.Utils.waitDisplayed;
 
 public class MainSteps {
     MainElements main = new MainElements();
 
-    public void isMainScreen() {
+    public void isMainScreen(){
         Allure.step("Проверить, что это главное окно");
         main.allClaims.check(matches(isDisplayed()));
         main.allNews.check(matches(isDisplayed()));
+    }
+
+    public void isMainScreenLoaded(){
+        main.inRoot.perform(waitDisplayed(R.id.all_claims_text_view, 5000));
     }
     public void clickButtonAllNews(){
         Allure.step("Переход на вкладку ВСЕ НОВОСТИ");

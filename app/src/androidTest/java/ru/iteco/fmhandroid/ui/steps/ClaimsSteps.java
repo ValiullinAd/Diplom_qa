@@ -12,7 +12,6 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import static org.hamcrest.core.AllOf.allOf;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import android.os.SystemClock;
 import ru.iteco.fmhandroid.R;
 import org.hamcrest.Matchers;
 
@@ -64,7 +63,6 @@ public class ClaimsSteps {
     public void applyClaims() {
         Allure.step("Подтверждение фильтрации заявок");
         claims.applyClaims.perform(click());
-        SystemClock.sleep(1000);
     }
 
     public void addNew() {
@@ -105,7 +103,6 @@ public class ClaimsSteps {
     public void saveButton() {
         Allure.step("Нажать на кнопку сохранить");
         claims.saveButton.perform(click());
-        SystemClock.sleep(1000);
     }
 
     public void checkEmpty() {
@@ -136,7 +133,6 @@ public class ClaimsSteps {
     public void onSwipe(){
         Allure.step("Свайп");
         claims.swipe.perform(swipeUp());
-        SystemClock.sleep(2000);
     }
 
     public void checkClaim(){
@@ -158,7 +154,6 @@ public class ClaimsSteps {
         claims.okButton.perform(click());
 
     }
-
 
     public void statusProcessingButton(){
         Allure.step("Кнопка выбора взять в работу или отменить");
@@ -201,15 +196,13 @@ public class ClaimsSteps {
     public void findTitle() {
         Allure.step("Поиск и переход к созданой заявки");
         onView(ViewMatchers.withId(R.id.claim_list_recycler_view))
-                // scrollTo will fail the test if no item matches.
                 .perform(RecyclerViewActions.scrollTo(
-                        hasDescendant(withText("Original text2551112"))
+                        hasDescendant(withText("Original text 2222222229"))
                 ));
-        SystemClock.sleep(5000);
     }
     public void checkVisualText(){
         Allure.step("Проверка созданой заявки");
-        onView(withText("Original text2551112")).check(matches(isDisplayed()));
+        onView(withText("Original text 2222222229")).check(matches(isDisplayed()));
     }
 
 

@@ -12,10 +12,6 @@ import org.junit.runner.RunWith;
 import ru.iteco.fmhandroid.ui.steps.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.steps.MainSteps;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
-import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AllureAndroidJUnit4.class)
 public class AuthorizationTests {
@@ -28,7 +24,8 @@ public class AuthorizationTests {
 
     @Before
     public void authCheck() {
-        SystemClock.sleep(5000);
+        auth.waitAutorizationContainer();
+
         try {
             auth.isAuthorizationScreen();
         } catch (NoMatchingViewException e) {
@@ -114,7 +111,7 @@ public class AuthorizationTests {
 
     @Test
     @DisplayName("Поле Логин заполнено пробелами")
-    public void loginSpice(){
+    public void loginSpace(){
         auth.isAuthorizationScreen();
         auth.loginInputField("     ");
         auth.passwordInputField("password2");
@@ -124,7 +121,7 @@ public class AuthorizationTests {
 
     @Test
     @DisplayName("Поле Пароль заполнено пробелами")
-    public void passwordSpice(){
+    public void passwordSpace(){
         auth.isAuthorizationScreen();
         auth.loginInputField("login2");
         auth.passwordInputField("         ");

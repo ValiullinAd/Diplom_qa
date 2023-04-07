@@ -28,13 +28,13 @@ public class AboutTests {
 
     @Before
     public void authCheck() {
-        SystemClock.sleep(5000);
+        auth.waitAutorizationContainer();
         try {
             main.isMainScreen();
         } catch (NoMatchingViewException e) {
             auth.validAuth();
         }
-        SystemClock.sleep(2000);
+        auth.waitAutorizationContainer();
     }
 
     @Test

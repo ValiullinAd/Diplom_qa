@@ -32,4 +32,5 @@ public class NewsControlPanelElements {
     public ViewInteraction buttonStatus = onView(withId(R.id.switcher));
     public ViewInteraction newsStatusActive = onView(withText("Active"));
     public ViewInteraction newsStatusNotActive = onView(withText("Not active"));
+    public ViewInteraction inRoot = onView(isRoot());
 }
