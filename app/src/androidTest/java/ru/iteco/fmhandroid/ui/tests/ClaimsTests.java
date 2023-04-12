@@ -53,8 +53,11 @@ public class ClaimsTests {
         claims.clickOkClaimButton();
         claims.enterDescription("Описание");
         claims.saveButton();
-        claims.findTitle();
-        claims.checkVisualText();
+        onView(ViewMatchers.withId(R.id.claim_list_recycler_view))
+                .perform(RecyclerViewActions.scrollTo(
+                        hasDescendant(withText("Original text 2222222229"))
+                ));
+        onView(withText("Original text 2222222229")).check(matches(isDisplayed()));
     }
 
     @Test
