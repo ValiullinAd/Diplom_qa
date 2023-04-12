@@ -193,17 +193,5 @@ public class ClaimsSteps {
         Allure.step("Проверка статуса заявки ");
         onView(withId(R.id.status_label_text_view)).check(matches(withText("Open"))).check(matches(isDisplayed()));
     }
-    public void findTitle() {
-        Allure.step("Поиск и переход к созданой заявки");
-        onView(ViewMatchers.withId(R.id.claim_list_recycler_view))
-                .perform(RecyclerViewActions.scrollTo(
-                        hasDescendant(withText("Original text 2222222229"))
-                ));
-    }
-    public void checkVisualText(){
-        Allure.step("Проверка созданой заявки");
-        onView(withText("Original text 2222222229")).check(matches(isDisplayed()));
-    }
-
-
+  
 }
